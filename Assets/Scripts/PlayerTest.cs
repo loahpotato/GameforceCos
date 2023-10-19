@@ -69,10 +69,12 @@ public class PlayerTest : NetworkBehaviour
             var displayRoot = GameObject.Find("Display");
             //var displayCanvas = displayRoot.transform.GetChild(1).gameObject;
             //displayCanvas.SetActive(false);
-            controllerCanvas = displayRoot.transform.Find("ControllerCanvas").gameObject;//.transform.GetChild(2).gameObject;
+            controllerCanvas = displayRoot.transform.Find("ControllerCanvas").gameObject;
             controllerCanvas.SetActive(true);
-            
-            var characterBtns = controllerCanvas.transform.Find("CharacterBtns").gameObject;
+
+
+            var characterPanel = controllerCanvas.transform.Find("CharacterPanel").gameObject;
+            var characterBtns = characterPanel.transform.Find("CharacterBtns").gameObject;
             int childCount = characterBtns.transform.childCount;
             
             for (int i = 0; i < childCount; i++)
