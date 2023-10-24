@@ -48,7 +48,6 @@ public class PlayerTest : NetworkBehaviour
     {
         Debug.Log("is sending");
 
-        
         //display.models.transform.GetChild()
         target.GetComponent<DisplayManager>().animNum = flag;
         //display.animator.SetTrigger("Active");

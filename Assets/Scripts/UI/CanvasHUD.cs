@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CanvasHUD : MonoBehaviour
 {
+    public GameObject panel; 
     public Button buttonHost;
     public TMP_InputField input;
     public TextMeshProUGUI info;
@@ -86,7 +88,7 @@ public class CanvasHUD : MonoBehaviour
             if (NetworkClient.isConnected)
             {
                 info.text = "Client: address=" + NetworkManager.singleton.networkAddress;
-                this.gameObject.SetActive(false);
+                panel.SetActive(false);
             }
         }
     }

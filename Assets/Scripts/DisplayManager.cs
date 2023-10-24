@@ -8,6 +8,7 @@ using UnityEngine;
 public class DisplayManager : NetworkBehaviour
 {
     //private SendInfo sendInfo;
+    public GameObject flash;
     public TextMeshProUGUI animNumTextMeshPro;
     public GameObject displayCanvas;
     public GameObject models;
@@ -18,6 +19,9 @@ public class DisplayManager : NetworkBehaviour
 
     void OnAnimChanged(int _Old, int _New)
     {
+        if (flash == null)
+            Debug.Log("no flash");
+        flash.GetComponent<Flash>().CameraFlash();
         if (animNumTextMeshPro != null)
             animNumTextMeshPro.text = _New.ToString();
         if(animationObject!= null)
@@ -27,6 +31,7 @@ public class DisplayManager : NetworkBehaviour
         animationObject.SetActive(true);
         animator = animationObject.GetComponent<Animator>();
         animator.SetTrigger("Active");
+        
     }
 
 
@@ -34,6 +39,8 @@ public class DisplayManager : NetworkBehaviour
     {
         var displayRoot = GameObject.Find("Display");
         models = displayRoot.transform.Find("Models").gameObject;
+        var canvas = displayRoot.transform.Find("CanvasHUD");
+        flash = canvas.transform.Find("FlashImage").gameObject;
         //displayCanvas = GameObject.Find("Display").transform.GetChild(1).gameObject;
         //displayCanvas.SetActive(true);
         //animNumTextMeshPro = displayCanvas.GetComponentInChildren<TextMeshProUGUI>();
@@ -62,16 +69,5 @@ public class DisplayManager : NetworkBehaviour
 
 
     }
-
-    /*void Update()
-    {
-        if (!isLocalPlayer) { return; }
-
-        float moveX = Input.GetAxis("Horizontal") * Time.deltaTime * 110.0f;
-        float moveZ = Input.GetAxis("Vertical") * Time.deltaTime * 4f;
-
-        transform.Rotate(0, moveX, 0);
-        transform.Translate(0, 0, moveZ);
-    }*/
 
 }
