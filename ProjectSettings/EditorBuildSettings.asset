@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Mirror/Examples/AdditiveScenes/Scenes/SubScene.unity
     guid: 7f4fd683fc6d866418c95f99977533a6
+  - enabled: 1
+    path: Assets/Scenes/IzaUIWorkScene.unity
+    guid: 707edf806fc9a8d46821a0d7827a4fdf
   m_configObjects: {}
