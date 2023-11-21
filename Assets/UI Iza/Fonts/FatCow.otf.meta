@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ba5f1d02645599e4ba30cdb959db002a
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - FatCow
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e1d9b94827916d64688b457be1d95e61, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
