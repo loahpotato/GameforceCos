@@ -9,28 +9,35 @@ public class StartToCharacter : MonoBehaviour
 
     [SerializeField] GameObject oldPanel;
     [SerializeField] GameObject newPanel;
+    [SerializeField] GameObject newCanvas;
 
     [SerializeField] GameObject pickAText;
     [SerializeField] GameObject characterText;
     [SerializeField] GameObject characterButtons;
 
-    public void StartToPosePanel()
+    [SerializeField] Animator animator;
+
+    public void StartToCharacterPanel()
     {
         StartCoroutine(SwitchRoutine());
     }
 
     private IEnumerator SwitchRoutine()
     {
-        startButton.transform.LeanScale(new Vector3(0.0f, 0.0f, 0.0f), 0.8f);
-        //settingsButton.transform.LeanScale(new Vector3(0.0f, 0.0f, 0.0f), 0.8f);
+        //animator = GetComponent<Animator>();
+        animator.enabled = false;
+
+        startButton.transform.LeanScale(new Vector3(0.0f, 0.0f, 0.0f), 0.8f).setEaseInBack();
+        settingsButton.transform.LeanScale(new Vector3(0.0f, 0.0f, 0.0f), 0.8f).setEaseInBack();
 
         yield return new WaitForSeconds(.8f);
 
         startButton.SetActive(false); // Disable the button immediately after scaling
-        //settingsButton.SetActive(false); // Disable the button immediately after scaling
+        settingsButton.SetActive(false); // Disable the button immediately after scaling
 
         yield return new WaitForSeconds(1);
 
+        newCanvas.SetActive(true);
         newPanel.SetActive(true);
         oldPanel.SetActive(false);
 

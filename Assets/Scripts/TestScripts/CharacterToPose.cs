@@ -33,15 +33,15 @@ public class CharacterToPose : MonoBehaviour
 
         yield return new WaitForSeconds(.8f);
 
-        StartCoroutine(MorphRoutine(2));
+        StartCoroutine(MorphRoutine(0.8f));
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
-        StopCoroutine(MorphRoutine(2));
+        StopCoroutine(MorphRoutine(0.8f));
         
         yield return new WaitForSeconds(.8f);
 
-        LeanTween.moveLocal(backButton, new Vector3(-800, 400, 0), 0.8f);
+        LeanTween.moveLocal(backButton, new Vector3(-800, 400, 0), 0.8f).setEaseInBack();
 
         characterButtons.transform.LeanScale(new Vector3(0.0f, 0.0f, 0.0f), 0.8f);
 
@@ -52,19 +52,19 @@ public class CharacterToPose : MonoBehaviour
 
         yield return new WaitForSeconds(.8f);
 
-        poseButton01.transform.LeanScale(new Vector3(1.2f, 4.8f, 1.0f), 0.8f);
+        poseButton01.transform.LeanScale(new Vector3(1.2f, 4.8f, 1.0f), 0.8f).setEaseOutBack();
 
         yield return new WaitForSeconds(.8f);
 
-        poseButton02.transform.LeanScale(new Vector3(1.2f, 4.8f, 1.0f), 0.8f);
+        poseButton02.transform.LeanScale(new Vector3(1.2f, 4.8f, 1.0f), 0.8f).setEaseOutBack();
 
         yield return new WaitForSeconds(.8f);
 
-        poseButton03.transform.LeanScale(new Vector3(1.2f, 4.8f, 1.0f), 0.8f);
+        poseButton03.transform.LeanScale(new Vector3(1.2f, 4.8f, 1.0f), 0.8f).setEaseOutBack();
 
         yield return new WaitForSeconds(.8f);
 
-        poseButton04.transform.LeanScale(new Vector3(1.2f, 4.8f, 1.0f), 0.8f);
+        poseButton04.transform.LeanScale(new Vector3(1.2f, 4.8f, 1.0f), 0.8f).setEaseOutBack();
     }
 
     private IEnumerator MorphRoutine(float duration)

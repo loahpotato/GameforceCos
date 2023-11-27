@@ -21,8 +21,11 @@ public class CharacterPickerLean : MonoBehaviour
 
     [SerializeField] GameObject closeButton;
 
+    private Button thisButton;
+
     private void Start()
     {
+        thisButton = GetComponent<Button>();
         InitializeUI();
     }
 
@@ -35,7 +38,7 @@ public class CharacterPickerLean : MonoBehaviour
 
     public void MorphImages(float duration)
     {
-        StartCoroutine(MorphRoutine(duration));
+        StartCoroutine(MorphRoutine(0.6f));
     }
 
     private IEnumerator MorphRoutine(float duration)
@@ -76,14 +79,17 @@ public class CharacterPickerLean : MonoBehaviour
 
     public void OpenBigger()
     {
-        // LeanTween animations for scaling and moving UI elements
-        LeanTween.scale(gameObject, new Vector3(1.5f, 6.2f, 1.3f), 0.8f);
-        LeanTween.scale(continueButton, new Vector3(0.9f, 0.4f, 1.0f), 0.8f);
-        LeanTween.scale(infoText, new Vector3(1.7f, 0.5f, 1.0f), 0.8f);
-        LeanTween.moveLocal(poseImage, new Vector3(5, 17, 0), 0.8f);
-        LeanTween.moveLocal(nameText, new Vector3(0, 15, 0), 0.8f);
 
-        LeanTween.scale(closeButton, new Vector3(1.0f, 1.0f, 1.0f), 0.8f);
+        thisButton.enabled = false;
+
+        // LeanTween animations for scaling and moving UI elements
+        LeanTween.scale(gameObject, new Vector3(1.29f, 5.18f, 1.0f), 0.8f).setEaseOutBack();
+        LeanTween.scale(continueButton, new Vector3(1.2f, 0.5f, 1.0f), 0.8f);
+        LeanTween.scale(infoText, new Vector3(1.7f, 0.5f, 1.0f), 0.8f);
+        LeanTween.moveLocal(poseImage, new Vector3(-5, 30, 0), 0.8f);
+        LeanTween.moveLocal(nameText, new Vector3(0, 0, 0), 0.8f);
+
+        LeanTween.scale(closeButton, new Vector3(0.6f, 0.45f, 1.0f), 0.8f);
 
         MorphImages(0.8f);
 
@@ -95,22 +101,24 @@ public class CharacterPickerLean : MonoBehaviour
 
     private void Smaller(GameObject obj)
     {
-        LeanTween.scale(obj, new Vector3(1.1f, 4.2f, 1.1f), 0.8f);
+        LeanTween.scale(obj, new Vector3(1.14f, 4.58f, 1.0f), 0.8f);
     }
 
     public void Close()
     {
+        thisButton.enabled = true;
+
         // Reverse the LeanTween animations
-        LeanTween.scale(gameObject, new Vector3(1.2f, 4.8f, 1.2f), 0.8f);
+        LeanTween.scale(gameObject, new Vector3(1.2f, 4.8f, 1.2f), 0.8f).setEaseInBack();
         LeanTween.scale(continueButton, Vector3.zero, 0.8f);
         LeanTween.scale(infoText, Vector3.zero, 0.8f);
-        LeanTween.moveLocal(poseImage, Vector3.zero, 0.8f);
-        LeanTween.moveLocal(nameText, new Vector3(0, 50f, 0), 0.8f);
+        LeanTween.moveLocal(poseImage, new Vector3(-5, 12, 1), 0.8f);
+        LeanTween.moveLocal(nameText, new Vector3(0, -21, 0), 0.8f);
 
         LeanTween.scale(closeButton, Vector3.zero, 0.8f);
 
         // Reverse the MorphImages effect
-        StartCoroutine(ReverseMorphRoutine(0.8f));
+        StartCoroutine(ReverseMorphRoutine(0.6f));
 
         // Reverse the LeanTween animations for scaling smaller image objects
         Bigger(imageObject01);
