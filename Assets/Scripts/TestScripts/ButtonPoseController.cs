@@ -15,19 +15,39 @@ public class ButtonPoseController : MonoBehaviour
 
     [SerializeField] private float originalYPos;
 
+    [SerializeField] private GameObject poseBtns;
+
     private Vector3 initialPoseImageScale;
     private Vector3 initialExitButtonScale;
+
+    public bool isOpened = false;
 
     private void Start()
     {
         exitButton.SetActive(true);
         exitButton.transform.localScale = Vector3.zero;
 
-        originalYPos = transform.localPosition.y;
+        //LeanTween.moveLocal(poseBtns, new Vector3(0, -780, 0), 0.8f);
+
+        //originalYPos = transform.localPosition.y;
 
         // Store the initial scales for later use in the ResetButtons method
         initialPoseImageScale = poseImage.transform.localScale;
         initialExitButtonScale = exitButton.transform.localScale;
+    }
+
+    public void ToggleButtonPress()
+    {
+        if (isOpened)
+        {
+            ResetButtons();
+        }
+        else
+        {
+            ActivatePose();
+        }
+
+        isOpened = !isOpened;
     }
 
     public void ActivatePose()
@@ -35,7 +55,7 @@ public class ButtonPoseController : MonoBehaviour
         LeanTween.moveLocalY(gameObject, yPosUp, 0.8f);
         LeanTween.scale(poseImage, new Vector3(2.9f, 1.0f, 1.1f), 0.8f);
 
-        LeanTween.scale(exitButton, new Vector3(1.0f, 1.0f, 1.0f), 0.8f);
+        //LeanTween.scale(exitButton, new Vector3(0.62f, 0.44f, 1.0f), 0.8f);
 
         LowerOtherButtons();
     }
