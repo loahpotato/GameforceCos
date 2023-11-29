@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SendInfo : NetworkBehaviour
 {
     public GameObject canvasStatusText;
-    public PlayerTest playerScript;
+    public PlayerManager playerScript;
     public DisplayManager display;
 
     [SyncVar(hook = nameof(OnAnimChanged))]

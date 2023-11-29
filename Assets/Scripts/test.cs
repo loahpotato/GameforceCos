@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class test : MonoBehaviour
 {
+    public Flash flash;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +17,8 @@ public class test : MonoBehaviour
     {
         
     }
-    public void ButtonSendMessage(String msg)
+    public void ButtonFlash()
     {
-        Console.WriteLine(msg);
+        flash.CameraFlash();
     }
 }

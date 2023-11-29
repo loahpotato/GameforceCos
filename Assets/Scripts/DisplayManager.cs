@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class DisplayManager : NetworkBehaviour
 {
-    //private SendInfo sendInfo;
     public GameObject flash;
     public TextMeshProUGUI animNumTextMeshPro;
     public GameObject displayCanvas;
@@ -27,7 +26,7 @@ public class DisplayManager : NetworkBehaviour
         if(animationObject!= null)
             animationObject.SetActive(false);
 
-        animationObject = models.transform.GetChild(_New-1).gameObject;
+        animationObject = models.transform.GetChild(_New).gameObject;
         animationObject.SetActive(true);
         animator = animationObject.GetComponent<Animator>();
         animator.SetTrigger("Active");

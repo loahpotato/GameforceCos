@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerTest : NetworkBehaviour
+public class PlayerManager : NetworkBehaviour
 {
     private GameObject display;
     public GameObject animButton;
@@ -66,22 +66,23 @@ public class PlayerTest : NetworkBehaviour
         if (isLocalPlayer)
         {
             var displayRoot = GameObject.Find("Display");
-            /*controllerCanvas = displayRoot.transform.Find("ControllerCanvas").gameObject;
-            controllerCanvas.SetActive(true);
+            controllerCanvas = displayRoot.transform.Find("ControllerCanvas").gameObject;
+            //controllerCanvas.SetActive(true);
 
 
-            var characterPanel = controllerCanvas.transform.Find("CharacterPanel").gameObject;
-            var characterBtns = characterPanel.transform.Find("CharacterBtns").gameObject;
-            int childCount = characterBtns.transform.childCount;
+            var poaePanel = controllerCanvas.transform.Find("PosePanel").gameObject;
+            var poseBtns = poaePanel.transform.Find("PoseBtns").gameObject;
+            poseBtns.GetComponent<ButtonPoseHUD>().currentClient = this;
+            /*int childCount = poseBtns.transform.childCount;
             
             for (int i = 0; i < childCount; i++)
             {
                 int index = i+1;
-                Button button = characterBtns.transform.GetChild(i).GetComponent<Button>();
+                Button button = poseBtns.transform.GetChild(i).GetComponent<Button>();
                 button.onClick.AddListener(() => ButtonSetAnim(index));
             }
-           
             */
+
         }
         
     }

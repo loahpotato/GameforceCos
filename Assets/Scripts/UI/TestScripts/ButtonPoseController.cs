@@ -16,11 +16,13 @@ public class ButtonPoseController : MonoBehaviour
     [SerializeField] private float originalYPos;
 
     [SerializeField] private GameObject poseBtns;
+    [SerializeField] private int animId;
 
     private Vector3 initialPoseImageScale;
     private Vector3 initialExitButtonScale;
 
     public bool isOpened = false;
+    private PlayerManager playerManager;
 
     private void Start()
     {
@@ -36,15 +38,23 @@ public class ButtonPoseController : MonoBehaviour
         initialExitButtonScale = exitButton.transform.localScale;
     }
 
+    private void OnEnable()
+    {
+        Debug.Log("enable pose");
+        playerManager = poseBtns.GetComponent<ButtonPoseHUD>().currentClient;
+    }
+
     public void ToggleButtonPress()
     {
         if (isOpened)
         {
             ResetButtons();
+            playerManager.animNum = 0;
         }
         else
         {
             ActivatePose();
+            playerManager.animNum = animId;
         }
 
         isOpened = !isOpened;
