@@ -66,9 +66,7 @@ public class PlayerTest : NetworkBehaviour
         if (isLocalPlayer)
         {
             var displayRoot = GameObject.Find("Display");
-            //var displayCanvas = displayRoot.transform.GetChild(1).gameObject;
-            //displayCanvas.SetActive(false);
-            controllerCanvas = displayRoot.transform.Find("ControllerCanvas").gameObject;
+            /*controllerCanvas = displayRoot.transform.Find("ControllerCanvas").gameObject;
             controllerCanvas.SetActive(true);
 
 
@@ -82,11 +80,8 @@ public class PlayerTest : NetworkBehaviour
                 Button button = characterBtns.transform.GetChild(i).GetComponent<Button>();
                 button.onClick.AddListener(() => ButtonSetAnim(index));
             }
-            
-            //button = controllerCanvas.GetComponentInChildren<Button>();
-            //button.onClick.RemoveAllListeners();
-            
-
+           
+            */
         }
         
     }

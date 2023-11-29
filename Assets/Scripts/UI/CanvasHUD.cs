@@ -1,45 +1,34 @@
 using Mirror;
 using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class CanvasHUD : MonoBehaviour
 {
-    public GameObject panel; 
-    public Button buttonHost;
+    //public GameObject panel; 
+    //public Button butttonHost;
     public TMP_InputField input;
     public TextMeshProUGUI info;
-    public Toggle hostToggle;
+    public GameObject controllerCanvas;
+    
+
+    private GameOverlay gameOverlay;
+    private GameObject startButton;
+    private GameObject settingButton;
+    private GameObject background;
+
 
     public void Start()
     {
-        buttonHost.onClick.AddListener(ButtonStart);
-        hostToggle.onValueChanged.AddListener(ToggleHost);
-    }
-
-    public void ToggleHost(bool value)
-    {
-        if(hostToggle.isOn)
-        {
-            input.text = "host";
-            input.interactable = false;
-
-            var newColorBlock = input.colors;
-            newColorBlock.normalColor = new Color(0.78f, 0.78f, 0.78f, 0.8f);
-            input.colors = newColorBlock;
-        }
-        else
-        {
-            input.text = "";
-            input.interactable = true;
-            var newColorBlock = input.colors;
-            newColorBlock.normalColor = Color.white;
-            input.colors = newColorBlock;
-        }
+        startButton = this.transform.Find("StartButton").gameObject;
+        settingButton = this.transform.Find("Setting").gameObject;
+        background = this.transform.Find("Background").gameObject;
+        background.SetActive(true);
+        gameOverlay = GetComponent<GameOverlay>();
+        startButton.GetComponent<Button>().onClick.AddListener(ButtonStart);
+        
     }
 
     public void ButtonStart()
@@ -53,6 +42,7 @@ public class CanvasHUD : MonoBehaviour
         else if(input.text == "host")
         {
             NetworkManager.singleton.StartHost();
+            //gameOverlay.StartToOverlay();
         }
         else
         {
@@ -66,6 +56,7 @@ public class CanvasHUD : MonoBehaviour
 
     }
 
+
     public void SetupCanvas()
     {
         // Here we will dump majority of the canvas UI that may be changed.
@@ -77,7 +68,13 @@ public class CanvasHUD : MonoBehaviour
                 StartCoroutine(Connecting());
             }
         }
-        else
+
+        else if (NetworkClient.isConnected)
+        {
+            info.text = "Client: address=" + NetworkManager.singleton.networkAddress;
+            ButtonHide();
+        }
+        /*else
         {
             // server / client status message
             //if (NetworkServer.active)
@@ -88,18 +85,53 @@ public class CanvasHUD : MonoBehaviour
             if (NetworkClient.isConnected)
             {
                 info.text = "Client: address=" + NetworkManager.singleton.networkAddress;
-                panel.SetActive(false);
+                ButtonHide();
             }
-        }
+        }*/
     }
 
     private IEnumerator Connecting()
     {
-        while (NetworkClient.active)
+        while (NetworkClient.active && !NetworkClient.isConnected)
         {
             yield return new WaitForSeconds(1);
         }
-        info.text = "Connecting failed. Please check the setting.";
+        if (!NetworkClient.isConnected)
+            info.text = "Connecting failed. Please check the setting.";
+        else
+            SetupCanvas();
+    }
+
+    public void ButtonHide()
+    {
+        startButton.GetComponent<Animator>().enabled = false;
+        if (NetworkClient.activeHost)
+        {
+            gameOverlay.StartToOverlay();
+            background.SetActive(false);
+            StartCoroutine(HideRoutine());
+        }
+        else
+        {
+            StartCoroutine(HideRoutine());
+            controllerCanvas.SetActive(true);
+            GameObject characterPanel = controllerCanvas.transform.Find("CharacterPanel").gameObject;
+            characterPanel.SetActive(true);
+        }
+    }
+
+    private IEnumerator HideRoutine()
+    {
+        startButton.transform.LeanScale(new Vector3(0.0f, 0.0f, 0.0f), 0.8f).setEaseInBack();
+        settingButton.transform.LeanScale(new Vector3(0.0f, 0.0f, 0.0f), 0.8f).setEaseInBack();
+
+        yield return new WaitForSeconds(.8f);
+
+        startButton.SetActive(false); // Disable the button immediately after scaling
+        settingButton.SetActive(false); // Disable the button immediately after scaling
+
+        yield return new WaitForSeconds(.2f);
+
 
     }
-    }
+}
