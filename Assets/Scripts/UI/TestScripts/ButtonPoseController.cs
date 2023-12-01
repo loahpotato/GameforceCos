@@ -63,7 +63,7 @@ public class ButtonPoseController : MonoBehaviour
     public void ActivatePose()
     {
         LeanTween.moveLocalY(gameObject, yPosUp, 0.8f);
-        LeanTween.scale(poseImage, new Vector3(2.9f, 1.0f, 1.1f), 0.8f);
+        LeanTween.scale(poseImage, new Vector3(2.8f, 0.96f, 1.1f), 0.8f);
 
         //LeanTween.scale(exitButton, new Vector3(0.62f, 0.44f, 1.0f), 0.8f);
 
@@ -86,7 +86,7 @@ public class ButtonPoseController : MonoBehaviour
     private void Lower()
     {
         LeanTween.moveLocalY(gameObject, yPosDown, 0.8f);
-        LeanTween.scale(poseImage, new Vector3(2.3f, 0.8f, 0.9f), 0.8f);
+        LeanTween.scale(poseImage, new Vector3(2.4f, 0.83f, 0.9f), 0.8f);
         LeanTween.scale(exitButton, new Vector3(0.0f, 0.0f, 0.0f), 0.8f);
     }
 

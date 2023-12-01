@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class CharacterToPose : MonoBehaviour
 {
@@ -37,6 +38,11 @@ public class CharacterToPose : MonoBehaviour
         {
             characterPickerLean.Close();
         }
+
+        poseButton01.GetComponent<Button>().enabled = true;
+        poseButton02.GetComponent<Button>().enabled = true;
+        poseButton03.GetComponent<Button>().enabled = true;
+        poseButton04.GetComponent<Button>().enabled = true;
 
         yield return new WaitForSeconds(.4f);
 
@@ -83,6 +89,11 @@ public class CharacterToPose : MonoBehaviour
         //{
         //    characterPickerLean.Close();
         //}
+
+        poseButton01.GetComponent<Button>().enabled = false;
+        poseButton02.GetComponent<Button>().enabled = false;
+        poseButton03.GetComponent<Button>().enabled = false;
+        poseButton04.GetComponent<Button>().enabled = false;
 
         yield return new WaitForSeconds(.2f);
 
