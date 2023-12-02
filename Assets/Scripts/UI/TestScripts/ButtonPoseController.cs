@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Mirror;
 
 public class ButtonPoseController : MonoBehaviour
 {
@@ -41,7 +42,11 @@ public class ButtonPoseController : MonoBehaviour
     private void OnEnable()
     {
         Debug.Log("enable pose");
-        playerManager = poseBtns.GetComponent<ButtonPoseHUD>().currentClient;
+        var player = NetworkClient.localPlayer.gameObject;
+        if (player == null)
+            Debug.Log("player is null");
+        playerManager = player.GetComponent<PlayerManager>();
+        playerManager.animNum = 1;
     }
 
     public void ToggleButtonPress()
@@ -49,7 +54,7 @@ public class ButtonPoseController : MonoBehaviour
         if (isOpened)
         {
             ResetButtons();
-            playerManager.animNum = 0;
+            playerManager.animNum = 1;
         }
         else
         {

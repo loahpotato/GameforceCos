@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Mirror;
 
 public class CharacterToPose : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class CharacterToPose : MonoBehaviour
     public void CharacterToPosePanel()
     {
         StartCoroutine(SwitchRoutine());
+        var player = NetworkClient.localPlayer.gameObject;
+        if (player == null)
+            Debug.Log("player is null");
+        PlayerManager playerManager = player.GetComponent<PlayerManager>();
+        playerManager.animNum = 1;
     }
 
     public void PoseToCharacterPanel()

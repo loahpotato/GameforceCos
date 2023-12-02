@@ -24,21 +24,10 @@ public class PlayerManager : NetworkBehaviour
     {
         Debug.Log("anim changed");
         CmdSendPlayerMessage(display, _New);
-        //animNumTextMeshPro.text = animNum.ToString();
-        /*if (display!=null)
-        {
-            CmdSendPlayerMessage(display, _New);
-            Debug.Log("display");
-        }
-        else
-        {
-            Debug.Log("no display");
-        }*/
     }
 
     void Awake()
     {
-        //allow all players to run this
         display = GameObject.FindObjectOfType<DisplayManager>().gameObject;
         
     }
@@ -46,9 +35,6 @@ public class PlayerManager : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void CmdSendPlayerMessage(GameObject target, int flag)
     {
-        Debug.Log("is sending");
-
-        //display.models.transform.GetChild()
         target.GetComponent<DisplayManager>().animNum = flag;
         //display.animator.SetTrigger("Active");
         //NetworkIdentity displayIdentity = target.GetComponent<NetworkIdentity>();
@@ -70,9 +56,9 @@ public class PlayerManager : NetworkBehaviour
             //controllerCanvas.SetActive(true);
 
 
-            var poaePanel = controllerCanvas.transform.Find("PosePanel").gameObject;
-            var poseBtns = poaePanel.transform.Find("PoseBtns").gameObject;
-            poseBtns.GetComponent<ButtonPoseHUD>().currentClient = this;
+            //var poaePanel = controllerCanvas.transform.Find("PosePanel").gameObject;
+            //var poseBtns = poaePanel.transform.Find("PoseBtns").gameObject;
+            //poseBtns.GetComponent<ButtonPoseHUD>().currentClient = this;
             /*int childCount = poseBtns.transform.childCount;
             
             for (int i = 0; i < childCount; i++)

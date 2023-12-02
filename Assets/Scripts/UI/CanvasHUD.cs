@@ -59,6 +59,7 @@ public class CanvasHUD : MonoBehaviour
 
     public void SetupCanvas()
     {
+        info.gameObject.SetActive(true);
         // Here we will dump majority of the canvas UI that may be changed.
         if (!NetworkClient.isConnected && !NetworkServer.active)
         {
@@ -72,6 +73,8 @@ public class CanvasHUD : MonoBehaviour
         else if (NetworkClient.isConnected)
         {
             info.text = "Client: address=" + NetworkManager.singleton.networkAddress;
+            info.text = "";
+            info.gameObject.SetActive(false);
             ButtonHide();
         }
         /*else

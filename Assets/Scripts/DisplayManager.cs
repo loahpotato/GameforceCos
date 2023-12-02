@@ -26,7 +26,8 @@ public class DisplayManager : NetworkBehaviour
         if(animationObject!= null)
             animationObject.SetActive(false);
 
-        animationObject = models.transform.GetChild(_New).gameObject;
+        Debug.Log(_New);
+        animationObject = models.transform.GetChild(_New-1).gameObject;
         animationObject.SetActive(true);
         animator = animationObject.GetComponent<Animator>();
         animator.SetTrigger("Active");
@@ -64,7 +65,7 @@ public class DisplayManager : NetworkBehaviour
     {
         //sendInfo.display = this;
         Camera.main.transform.SetParent(transform);
-        Camera.main.transform.localPosition = new Vector3(0, 0, 0);
+        Camera.main.transform.localPosition = new Vector3(0, 0.5f, 0);
 
 
     }
