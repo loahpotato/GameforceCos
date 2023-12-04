@@ -41,12 +41,11 @@ public class ButtonPoseController : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("enable pose");
         var player = NetworkClient.localPlayer.gameObject;
         if (player == null)
             Debug.Log("player is null");
         playerManager = player.GetComponent<PlayerManager>();
-        playerManager.animNum = 1;
+        //playerManager.animNum = 1;
     }
 
     public void ToggleButtonPress()

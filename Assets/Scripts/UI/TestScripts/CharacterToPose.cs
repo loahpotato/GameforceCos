@@ -22,14 +22,28 @@ public class CharacterToPose : MonoBehaviour
     [SerializeField] GameObject poseButton03;
     [SerializeField] GameObject poseButton04;
 
+    private PlayerManager GetCurrentPlayer()
+    {
+        var player = NetworkClient.localPlayer.gameObject;
+        if (player == null)
+        {
+            Debug.Log("player is null");
+            return null;
+        }
+            
+        PlayerManager playerManager = player.GetComponent<PlayerManager>();
+        return playerManager;
+    }
+
+    public void SetAnimation(int animId)
+    {
+        PlayerManager playerManager = GetCurrentPlayer();
+        playerManager.animNum = animId;
+    }
+
     public void CharacterToPosePanel()
     {
         StartCoroutine(SwitchRoutine());
-        var player = NetworkClient.localPlayer.gameObject;
-        if (player == null)
-            Debug.Log("player is null");
-        PlayerManager playerManager = player.GetComponent<PlayerManager>();
-        playerManager.animNum = 1;
     }
 
     public void PoseToCharacterPanel()
