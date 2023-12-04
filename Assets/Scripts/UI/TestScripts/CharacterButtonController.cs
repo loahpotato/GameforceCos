@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class CharacterPickerLean : MonoBehaviour
+public class CharacterButtonController : MonoBehaviour
 {
     [SerializeField] private GameObject imageObject01;
     [SerializeField] private GameObject imageObject02;

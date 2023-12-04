@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingsPannelPwetty : MonoBehaviour
+public class SettingsPannelPopUp : MonoBehaviour
 {
     [SerializeField] GameObject settingsButton;
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Mirror;
 
-public class ButtonPoseController : MonoBehaviour
+public class PoseButtonController : MonoBehaviour
 {
     [SerializeField] private GameObject poseImage;
     [SerializeField] private GameObject exitButton;
@@ -16,7 +16,6 @@ public class ButtonPoseController : MonoBehaviour
 
     [SerializeField] private float originalYPos;
 
-    [SerializeField] private GameObject poseBtns;
     [SerializeField] private int animId;
 
     private Vector3 initialPoseImageScale;
@@ -29,10 +28,6 @@ public class ButtonPoseController : MonoBehaviour
     {
         exitButton.SetActive(true);
         exitButton.transform.localScale = Vector3.zero;
-
-        //LeanTween.moveLocal(poseBtns, new Vector3(0, -780, 0), 0.8f);
-
-        //originalYPos = transform.localPosition.y;
 
         // Store the initial scales for later use in the ResetButtons method
         initialPoseImageScale = poseImage.transform.localScale;
@@ -69,16 +64,14 @@ public class ButtonPoseController : MonoBehaviour
         LeanTween.moveLocalY(gameObject, yPosUp, 0.8f);
         LeanTween.scale(poseImage, new Vector3(2.8f, 0.96f, 1.1f), 0.8f);
 
-        //LeanTween.scale(exitButton, new Vector3(0.62f, 0.44f, 1.0f), 0.8f);
-
         LowerOtherButtons();
     }
 
     private void LowerOtherButtons()
     {
-        ButtonPoseController[] otherButtons = FindObjectsOfType<ButtonPoseController>();
+        PoseButtonController[] otherButtons = FindObjectsOfType<PoseButtonController>();
 
-        foreach (ButtonPoseController otherButton in otherButtons)
+        foreach (PoseButtonController otherButton in otherButtons)
         {
             if (otherButton != this)
             {
@@ -101,9 +94,9 @@ public class ButtonPoseController : MonoBehaviour
         LeanTween.scale(exitButton, initialExitButtonScale, 0.8f);
 
         // Reset other buttons
-        ButtonPoseController[] allButtons = FindObjectsOfType<ButtonPoseController>();
+        PoseButtonController[] allButtons = FindObjectsOfType<PoseButtonController>();
 
-        foreach (ButtonPoseController button in allButtons)
+        foreach (PoseButtonController button in allButtons)
         {
             if (button != this)
             {

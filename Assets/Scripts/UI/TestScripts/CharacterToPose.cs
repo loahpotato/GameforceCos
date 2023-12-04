@@ -7,7 +7,7 @@ using Mirror;
 
 public class CharacterToPose : MonoBehaviour
 {
-    [SerializeField] private CharacterPickerLean characterPickerLean; // Reference to CharacterPickerLean
+    [SerializeField] private CharacterButtonController characterButtonController; // Reference to CharacterPickerLean
 
     [SerializeField] private TextMeshProUGUI text1; // Reference to the first TextMeshPro text component
     [SerializeField] private TextMeshProUGUI text2; // Reference to the second TextMeshPro text component
@@ -54,9 +54,9 @@ public class CharacterToPose : MonoBehaviour
     private IEnumerator SwitchRoutine()
     {
         // Call the Close method from CharacterPickerLean
-        if (characterPickerLean != null)
+        if (characterButtonController != null)
         {
-            characterPickerLean.Close();
+            characterButtonController.Close();
         }
 
         poseButton01.GetComponent<Button>().enabled = true;
