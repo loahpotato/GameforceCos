@@ -56660,11 +56660,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d63ebff780b70449bdfe42c21dcd1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSize: 0.2
-  maxSize: 0.4
-  animationSpeed: 1
-  rotationSpeed: 180
-  wapowSound: {fileID: 8300000, guid: cea328086e43223478c33c3fea89e689, type: 3}
+  imageObject: {fileID: 1795708432}
+  initialScale: 0
+  targetScale: 0.4
+  duration: 6
 --- !u!212 &1795708434
 SpriteRenderer:
   m_ObjectHideFlags: 0

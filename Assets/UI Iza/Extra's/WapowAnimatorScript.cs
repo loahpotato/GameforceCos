@@ -4,86 +4,39 @@ using UnityEngine;
 
 public class WapowAnimatorScript : MonoBehaviour
 {
-    public float minSize = 1f;
-    public float maxSize = 3f;
-    public float animationSpeed = 1f;
-    public float rotationSpeed = 180f; // Added rotation speed
+    public GameObject imageObject;
+    public float initialScale = 1.0f;
+    public float targetScale = 2.0f;
+    public float duration = 1.0f;
 
-    public AudioClip wapowSound; // Add the audio clip variable
-    private AudioSource audioSource; // Add the audio source variable
-
-    private float targetScale;
-    private bool scalingUp = true;
-
-    private void Start()
+    public void PlayWapow()
     {
-        targetScale = maxSize;
-
-        // Initialize the AudioSource component
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
+        // Voeg een voorbeeldafbeelding toe als die nog niet is toegewezen
+        if (imageObject == null)
         {
-            // If AudioSource component is not already attached, add it
-            audioSource = gameObject.AddComponent<AudioSource>();
+            // Maak een kubus als voorbeeldafbeelding
+            imageObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
         }
 
-        PlayWapowSound();
+        // Schaal de afbeelding naar de initiële schaal
+        imageObject.transform.localScale = new Vector3(initialScale, initialScale, initialScale);
+
+        // Start de schaalanimatie
+        ScaleImage();
     }
 
-    private void Update()
+    void ScaleImage()
     {
-        float currentScale = transform.localScale.x;
-
-        float step = Time.deltaTime * animationSpeed;
-        float rotationStep = Time.deltaTime * rotationSpeed;
-
-        if (scalingUp)
-        {
-            currentScale = Mathf.MoveTowards(currentScale, targetScale, step);
-            transform.Rotate(Vector3.forward, rotationStep);
-
-            if (Mathf.Approximately(currentScale, targetScale))
-            {
-                scalingUp = !scalingUp;
-                targetScale = minSize;
-
-                // Play the sound when the scaling direction changes
-
-            }
-        }
-        else
-        {
-            currentScale = Mathf.MoveTowards(currentScale, targetScale, step);
-            transform.Rotate(Vector3.forward, rotationStep);
-
-            if (Mathf.Approximately(currentScale, targetScale))
-            {
-                if (targetScale == minSize)
-                {
-                    targetScale = 0f;
-                }
-                else
-                {
-                    scalingUp = !scalingUp;
-                }
-            }
-        }
-
-        transform.localScale = new Vector3(currentScale, currentScale, 1f);
-
-        if (targetScale == 0f && Mathf.Approximately(currentScale, targetScale))
-        {
-            gameObject.SetActive(false);
-        }
+        // Tween de schaal van de afbeelding van de initiële schaal naar de doelschaal
+        LeanTween.scale(imageObject, new Vector3(targetScale, targetScale, targetScale), duration)
+            .setEase(LeanTweenType.easeOutBack) // Pas de gewenste easing-functie toe
+            .setOnComplete(ResetScale); // Roep ResetScale aan als de animatie is voltooid
     }
 
-    // Function to play the wapow sound
-    private void PlayWapowSound()
+    void ResetScale()
     {
-        if (wapowSound != null && audioSource != null)
-        {
-            // Play the sound through the AudioSource component
-            audioSource.PlayOneShot(wapowSound);
-        }
+        // Wacht even en schaal de afbeelding terug naar de initiële schaal
+        LeanTween.scale(imageObject, new Vector3(initialScale, initialScale, initialScale), duration)
+            .setEase(LeanTweenType.easeInBack); // Pas de gewenste easing-functie toe
     }
 }
