@@ -110,7 +110,7 @@ public class CanvasHUD : MonoBehaviour
         startButton.GetComponent<Animator>().enabled = false;
         if (NetworkClient.activeHost)
         {
-            gameOverlay.StartToOverlay();
+            //gameOverlay.StartToOverlay();
             background.SetActive(false);
             StartCoroutine(HideRoutine());
         }

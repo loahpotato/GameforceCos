@@ -30,7 +30,14 @@ public class DisplayManager : NetworkBehaviour
         animationObject = models.transform.GetChild(_New-1).gameObject;
         animationObject.SetActive(true);
         animator = animationObject.GetComponent<Animator>();
-        animator.SetTrigger("Active");
+        if (_New == 1 && _Old != 0) //pose panel, when go back from one pose to default 
+        {
+            animator.SetBool("Back", true);
+        }else if (_New == 1 && _Old == 0)
+        {
+            animator.SetBool("Back", false);
+        }
+        //animator.SetTrigger("Active");
         
     }
 

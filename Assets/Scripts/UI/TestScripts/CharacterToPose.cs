@@ -22,23 +22,9 @@ public class CharacterToPose : MonoBehaviour
     [SerializeField] GameObject poseButton03;
     [SerializeField] GameObject poseButton04;
 
-    private PlayerManager GetCurrentPlayer()
+    public void StartDefaultAnimation()
     {
-        var player = NetworkClient.localPlayer.gameObject;
-        if (player == null)
-        {
-            Debug.Log("player is null");
-            return null;
-        }
-            
-        PlayerManager playerManager = player.GetComponent<PlayerManager>();
-        return playerManager;
-    }
-
-    public void SetAnimation(int animId)
-    {
-        PlayerManager playerManager = GetCurrentPlayer();
-        playerManager.animNum = animId;
+        PlayerManager.SetAnimation(1);
     }
 
     public void CharacterToPosePanel()
@@ -48,6 +34,8 @@ public class CharacterToPose : MonoBehaviour
 
     public void PoseToCharacterPanel()
     {
+        StartDefaultAnimation();
+        PoseButtonController.CloseAll();
         StartCoroutine(SwitchBackRoutine());
     }
 
@@ -59,16 +47,11 @@ public class CharacterToPose : MonoBehaviour
             characterButtonController.Close();
         }
 
-        poseButton01.GetComponent<Button>().enabled = true;
-        poseButton02.GetComponent<Button>().enabled = true;
-        poseButton03.GetComponent<Button>().enabled = true;
-        poseButton04.GetComponent<Button>().enabled = true;
-
         yield return new WaitForSeconds(.4f);
 
         StartCoroutine(MorphRoutine(0.6f));
 
-        LeanTween.moveLocal(characterButtons, new Vector3(0, -480, 0), 0.8f).setEaseInBack();
+        LeanTween.moveLocal(characterButtons, new Vector3(0, -1000, 0), 0.8f).setEaseInBack();
 
         yield return new WaitForSeconds(0.8f);
 
@@ -100,6 +83,13 @@ public class CharacterToPose : MonoBehaviour
         yield return new WaitForSeconds(.4f);
 
         LeanTween.moveLocal(poseButton04, new Vector3(480, -290, 0), 0.4f).setEaseOutBack();
+
+        poseButton01.GetComponent<Button>().enabled = true;
+        poseButton02.GetComponent<Button>().enabled = true;
+        poseButton03.GetComponent<Button>().enabled = true;
+        poseButton04.GetComponent<Button>().enabled = true;
+
+        yield return new WaitForSeconds(.4f);
     }
 
     private IEnumerator SwitchBackRoutine()
@@ -121,19 +111,19 @@ public class CharacterToPose : MonoBehaviour
 
         yield return new WaitForSeconds(.2f);
 
-        LeanTween.moveLocal(poseButton04, new Vector3(480, -915, 0), 0.4f).setEaseInBack();
+        LeanTween.moveLocal(poseButton04, new Vector3(480, -1215, 0), 0.4f).setEaseInBack();
 
         yield return new WaitForSeconds(.4f);
 
-        LeanTween.moveLocal(poseButton03, new Vector3(160, -940, 0), 0.4f).setEaseInBack();
+        LeanTween.moveLocal(poseButton03, new Vector3(160, -1164, 0), 0.4f).setEaseInBack();
 
         yield return new WaitForSeconds(.4f);
 
-        LeanTween.moveLocal(poseButton02, new Vector3(-160, -865, 0), 0.4f).setEaseInBack();
+        LeanTween.moveLocal(poseButton02, new Vector3(-160, -1239, 0), 0.4f).setEaseInBack();
 
         yield return new WaitForSeconds(.4f);
 
-        LeanTween.moveLocal(poseButton01, new Vector3(-480, -915, 0), 0.4f).setEaseInBack();
+        LeanTween.moveLocal(poseButton01, new Vector3(-480, -1192, 0), 0.4f).setEaseInBack();
 
         StartCoroutine(MorphbackRoutine(0.6f));
 

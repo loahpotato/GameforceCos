@@ -13,6 +13,26 @@ public class PlayerManager : NetworkBehaviour
     [SyncVar(hook = nameof(OnAnimChanged))]
     public int animNum;
 
+    private static PlayerManager GetCurrentPlayer()
+    {
+        var player = NetworkClient.localPlayer.gameObject;
+        if (player == null)
+        {
+            Debug.Log("player is null");
+            return null;
+        }
+
+        PlayerManager playerManager = player.GetComponent<PlayerManager>();
+        return playerManager;
+    }
+
+    public static void SetAnimation(int animId)
+    {
+        PlayerManager playerManager = GetCurrentPlayer();
+        if(playerManager!=null)
+            playerManager.animNum = animId;
+    }
+
     private void ButtonSetAnim(int flag)
     {
         animNum = flag;

@@ -26,10 +26,12 @@ public class PoseButtonController : MonoBehaviour
     private Vector3 initialExitButtonScale;
 
     public bool isOpened = false;
-    private PlayerManager playerManager;
+    private static PoseButtonController[] allButtons;
 
     private void Start()
     {
+        allButtons = FindObjectsOfType<PoseButtonController>();
+
         exitButton.SetActive(true);
         exitButton.transform.localScale = Vector3.zero;
 
@@ -38,29 +40,27 @@ public class PoseButtonController : MonoBehaviour
         initialExitButtonScale = exitButton.transform.localScale;
     }
 
-    private void OnEnable()
+    /*private void OnEnable()
     {
         var player = NetworkClient.localPlayer.gameObject;
         if (player == null)
             Debug.Log("player is null");
         playerManager = player.GetComponent<PlayerManager>();
-        //playerManager.animNum = 1;
-    }
+    }*/
 
     public void ToggleButtonPress()
     {
         if (isOpened)
         {
             ResetButtons();
-            playerManager.animNum = 1;
+            PlayerManager.SetAnimation(1);
         }
         else
         {
             ActivatePose();
-            playerManager.animNum = animId;
+            PlayerManager.SetAnimation(animId);
         }
 
-        isOpened = !isOpened;
     }
 
     public void ActivatePose()
@@ -70,6 +70,7 @@ public class PoseButtonController : MonoBehaviour
 
         LowerOtherButtons();
 
+        isOpened = true;
         //test wapow effect
         /*if (wapowanimator01 && wapowanimator02 != null)
         {
@@ -81,9 +82,7 @@ public class PoseButtonController : MonoBehaviour
 
     private void LowerOtherButtons()
     {
-        PoseButtonController[] otherButtons = FindObjectsOfType<PoseButtonController>();
-
-        foreach (PoseButtonController otherButton in otherButtons)
+        foreach (PoseButtonController otherButton in allButtons)
         {
             if (otherButton != this)
             {
@@ -97,23 +96,15 @@ public class PoseButtonController : MonoBehaviour
         LeanTween.moveLocalY(gameObject, yPosDown, 0.8f);
         LeanTween.scale(poseImage, new Vector3(2.4f, 0.83f, 0.9f), 0.8f);
         LeanTween.scale(exitButton, new Vector3(0.0f, 0.0f, 0.0f), 0.8f);
+        isOpened = false;
     }
 
     public void ResetButtons()
     {
-        LeanTween.moveLocalY(gameObject, originalYPos, 0.8f);
-        LeanTween.scale(poseImage, initialPoseImageScale, 0.8f);
-        LeanTween.scale(exitButton, initialExitButtonScale, 0.8f);
-
         // Reset other buttons
-        PoseButtonController[] allButtons = FindObjectsOfType<PoseButtonController>();
-
         foreach (PoseButtonController button in allButtons)
         {
-            if (button != this)
-            {
-                button.ResetButton();
-            }
+            button.ResetButton();
         }
     }
 
@@ -122,5 +113,14 @@ public class PoseButtonController : MonoBehaviour
         LeanTween.moveLocalY(gameObject, originalYPos, 0.8f);
         LeanTween.scale(poseImage, initialPoseImageScale, 0.8f);
         LeanTween.scale(exitButton, initialExitButtonScale, 0.8f);
+        isOpened = false;
+    }
+
+    public static void CloseAll()
+    {
+        foreach (PoseButtonController button in allButtons)
+        {
+            button.isOpened = false;
+        }
     }
 }
