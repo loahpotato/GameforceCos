@@ -76,7 +76,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
-        m_Texture: {fileID: 2800000, guid: 3df7664d546ae5c428e60817c254fd0d, type: 3}
+        m_Texture: {fileID: 2800000, guid: c04e93d5a5c59ca4aa8f2519075de4a4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -150,7 +150,7 @@ Material:
     - _DetailNormalScale: 1
     - _DetailSmoothnessScale: 1
     - _DiffusionProfile: 0
-    - _DiffusionProfileHash: 2.876484
+    - _DiffusionProfileHash: 2.3406963
     - _DisplacementLockObjectScale: 1
     - _DisplacementLockTilingScale: 1
     - _DisplacementMode: 0
@@ -185,7 +185,7 @@ Material:
     - _MetallicRemapMax: 1
     - _MetallicRemapMin: 0
     - _NormalMapSpace: 0
-    - _NormalScale: 1
+    - _NormalScale: 0
     - _OpaqueCullMode: 2
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 15
@@ -238,7 +238,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DiffusionProfileAsset: {r: -5.866926e+32, g: -1.6283255e-36, b: 2.8526416e+31, a: 8.39364e+18}
+    - _DiffusionProfileAsset: {r: 3.808969e-34, g: -1.1043359e-16, b: 3.9213166e-26, a: 4.6104765e-13}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DiffusionProfileReferences:
-  - {fileID: 11400000, guid: d068e7f5ca850a84e906b47366f8e85e, type: 2}
+  - {fileID: 11400000, guid: 4026fd077ca4fea4982c4215fcc5012b, type: 2}
   m_MaterialReferences: []
 --- !u!114 &3731706988147141698
 MonoBehaviour:
