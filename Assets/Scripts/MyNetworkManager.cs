@@ -48,28 +48,27 @@ public class MyNetworkManager : NetworkManager
     {
         // playerPrefab is the one assigned in the inspector in Network
         // Manager but you can use different prefabs per race for example
+        if (message.type < 0)
+        {
+            message.type = 0;
+        }
 
-        /*GameObject player;
+        GameObject player;
         Transform startPos = GetStartPosition();
 
         if (startPos != null)
         {
-            player = Instantiate(characters[message.type], startPos.position, startPos.rotation) as GameObject;
+            playerPrefab = spawnPrefabs[message.type];
+            player = Instantiate(playerPrefab, startPos.position, startPos.rotation) as GameObject;
         }
         else
         {
-            player = Instantiate(characters[message.type], Vector3.zero, Quaternion.identity) as GameObject;
+            player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 
-        }*/
-        if(message.type < 0)
-        {
-            message.type = 0;
         }
-        playerPrefab = spawnPrefabs[message.type];
-        GameObject gameobject = Instantiate(playerPrefab);
 
         // call this to use this gameobject as the primary controller
-        NetworkServer.AddPlayerForConnection(conn, gameobject);
+        NetworkServer.AddPlayerForConnection(conn, player);
     }
 
 

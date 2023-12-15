@@ -8,8 +8,8 @@ using Mirror;
 public class PoseButtonController : MonoBehaviour
 {
 
-    [SerializeField] private WapowAnimatorScript wapowanimator01;
-    [SerializeField] private WapowAnimatorScript wapowanimator02;
+    //[SerializeField] private WapowAnimatorScript wapowanimator01;
+    //[SerializeField] private WapowAnimatorScript wapowanimator02;
 
     [SerializeField] private GameObject poseImage;
     [SerializeField] private GameObject exitButton;
@@ -70,11 +70,12 @@ public class PoseButtonController : MonoBehaviour
 
         LowerOtherButtons();
 
-        if (wapowanimator01 && wapowanimator02 != null)
+        //test wapow effect
+        /*if (wapowanimator01 && wapowanimator02 != null)
         {
             wapowanimator01.PlayWapow();
             wapowanimator02.PlayWapow();
-        }
+        }*/
 
     }
 

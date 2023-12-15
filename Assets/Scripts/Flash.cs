@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Data;
+using System.Collections.Specialized;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class Flash : MonoBehaviour
 {
@@ -21,6 +25,18 @@ public class Flash : MonoBehaviour
 
     public void CameraFlash()
     {
+        var wapowImages = GetComponents<WapowAnimatorScript>();
+        if (wapowImages != null && wapowImages.Length != 0)
+        {
+            foreach (WapowAnimatorScript ww in wapowImages) {
+                ww.PlayWapow();
+            }
+        }
+        else
+        {
+            Debug.Log("no ww");
+        }
+
         Color col = flashImage.color;
         col.a = 1.0f;
         flashImage.color = col;

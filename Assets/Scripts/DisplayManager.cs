@@ -65,7 +65,7 @@ public class DisplayManager : NetworkBehaviour
     {
         //sendInfo.display = this;
         Camera.main.transform.SetParent(transform);
-        Camera.main.transform.localPosition = new Vector3(0, 0.4f, 0);
+        Camera.main.transform.localPosition = new Vector3(0, 0, 0f);
 
 
     }
