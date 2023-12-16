@@ -8,7 +8,7 @@ using UnityEngine;
 public class DisplayManager : NetworkBehaviour
 {
     public GameObject flash;
-    public TextMeshProUGUI animNumTextMeshPro;
+    //public TextMeshProUGUI animNumTextMeshPro;
     public GameObject displayCanvas;
     public GameObject models;
     public GameObject animationObject;
@@ -18,12 +18,9 @@ public class DisplayManager : NetworkBehaviour
 
     void OnAnimChanged(int _Old, int _New)
     {
-        if (flash == null)
-            Debug.Log("no flash");
-        flash.GetComponent<Flash>().CameraFlash();
-        if (animNumTextMeshPro != null)
-            animNumTextMeshPro.text = _New.ToString();
-        if(animationObject!= null)
+        if (flash != null && _Old != 0)
+            flash.GetComponent<Flash>().CameraFlash();
+        if (animationObject!= null)
             animationObject.SetActive(false);
 
         Debug.Log(_New);
@@ -38,7 +35,7 @@ public class DisplayManager : NetworkBehaviour
             animator.SetBool("Back", false);
         }
         //animator.SetTrigger("Active");
-        
+
     }
 
 
@@ -66,7 +63,7 @@ public class DisplayManager : NetworkBehaviour
             Debug.Log("no text");
         }*/
     }
-
+    
 
     public override void OnStartLocalPlayer()
     {
