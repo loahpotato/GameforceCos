@@ -9,6 +9,12 @@ public class WapowAnimatorScript : MonoBehaviour
     public float targetScale = 2.0f;
     public float duration = 1.0f;
 
+
+    private void Start()
+    {
+        //this is just to turn the script on and off in the inspector tbh
+    }
+
     public void PlayWapow()
     {
         // Voeg een voorbeeldafbeelding toe als die nog niet is toegewezen
@@ -29,7 +35,7 @@ public class WapowAnimatorScript : MonoBehaviour
     {
         // Tween de schaal van de afbeelding van de initiële schaal naar de doelschaal
         LeanTween.scale(imageObject, new Vector3(targetScale, targetScale, targetScale), duration)
-            .setEase(LeanTweenType.easeOutBack) // Pas de gewenste easing-functie toe
+            //.setEase(LeanTweenType.easeOutBack) // Pas de gewenste easing-functie toe
             .setOnComplete(ResetScale); // Roep ResetScale aan als de animatie is voltooid
     }
 

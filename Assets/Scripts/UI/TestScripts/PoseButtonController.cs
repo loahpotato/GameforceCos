@@ -65,8 +65,8 @@ public class PoseButtonController : MonoBehaviour
 
     public void ActivatePose()
     {
-        LeanTween.moveLocalY(gameObject, yPosUp, 0.8f);
-        LeanTween.scale(poseImage, new Vector3(2.8f, 0.96f, 1.1f), 0.8f);
+        LeanTween.moveLocalY(gameObject, yPosUp, 0.5f);
+        LeanTween.scale(poseImage, new Vector3(2.8f, 0.96f, 1.1f), 0.5f);
 
         LowerOtherButtons();
 
@@ -93,9 +93,9 @@ public class PoseButtonController : MonoBehaviour
 
     private void Lower()
     {
-        LeanTween.moveLocalY(gameObject, yPosDown, 0.8f);
-        LeanTween.scale(poseImage, new Vector3(2.4f, 0.83f, 0.9f), 0.8f);
-        LeanTween.scale(exitButton, new Vector3(0.0f, 0.0f, 0.0f), 0.8f);
+        LeanTween.moveLocalY(gameObject, yPosDown, 0.5f);
+        LeanTween.scale(poseImage, new Vector3(2.4f, 0.83f, 0.9f), 0.5f);
+        LeanTween.scale(exitButton, new Vector3(0.0f, 0.0f, 0.0f), 0.5f);
         isOpened = false;
     }
 
@@ -110,9 +110,9 @@ public class PoseButtonController : MonoBehaviour
 
     private void ResetButton()
     {
-        LeanTween.moveLocalY(gameObject, originalYPos, 0.8f);
-        LeanTween.scale(poseImage, initialPoseImageScale, 0.8f);
-        LeanTween.scale(exitButton, initialExitButtonScale, 0.8f);
+        LeanTween.moveLocalY(gameObject, originalYPos, 0.5f);
+        LeanTween.scale(poseImage, initialPoseImageScale, 0.5f);
+        LeanTween.scale(exitButton, initialExitButtonScale, 0.5f);
         isOpened = false;
     }
 

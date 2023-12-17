@@ -56,7 +56,7 @@ public class CharacterButtonController : MonoBehaviour
 
     public void MorphImages(float duration)
     {
-        StartCoroutine(MorphRoutine(0.6f));
+        StartCoroutine(MorphRoutine(0.4f));
     }
 
     private IEnumerator MorphRoutine(float duration)
@@ -104,15 +104,15 @@ public class CharacterButtonController : MonoBehaviour
         //thisButton.enabled = false;
 
         // LeanTween animations for scaling and moving UI elements
-        LeanTween.scale(gameObject, new Vector3(1.29f, 5.18f, 1.0f), 0.8f).setEaseOutBack();
-        LeanTween.scale(continueButton, new Vector3(1.2f, 0.5f, 1.0f), 0.8f);
+        LeanTween.scale(gameObject, new Vector3(1.29f, 5.18f, 1.0f), 0.6f).setEaseOutBack();
+        LeanTween.scale(continueButton, new Vector3(1.2f, 0.5f, 1.0f), 0.6f);
         //LeanTween.scale(infoText, new Vector3(1.7f, 0.5f, 1.0f), 0.8f);
-        LeanTween.moveLocal(poseImage, new Vector3(-5, 17, 0), 0.8f);
-        LeanTween.moveLocal(nameText, new Vector3(0, -12, 0), 0.8f);
+        LeanTween.moveLocal(poseImage, new Vector3(-5, 17, 0), 0.6f);
+        LeanTween.moveLocal(nameText, new Vector3(0, -12, 0), 0.6f);
 
-        LeanTween.scale(closeButton, new Vector3(0.6f, 0.45f, 1.0f), 0.8f);
+        LeanTween.scale(closeButton, new Vector3(0.6f, 0.45f, 1.0f), 0.6f);
 
-        MorphImages(0.6f);
+        MorphImages(0.4f);
 
         // LeanTween animations for scaling smaller image objects
         Smaller(imageObject01);
@@ -122,23 +122,23 @@ public class CharacterButtonController : MonoBehaviour
 
     private void Smaller(GameObject obj)
     {
-        LeanTween.scale(obj, new Vector3(1.14f, 4.58f, 1.0f), 0.8f);
+        LeanTween.scale(obj, new Vector3(1.14f, 4.58f, 1.0f), 0.6f);
     }
 
     public void Close()
     {
         if (isOpened == true)
         {
-            LeanTween.scale(gameObject, new Vector3(1.2f, 4.8f, 1.2f), 0.8f).setEaseInBack();
-            LeanTween.scale(continueButton, Vector3.zero, 0.8f);
+            LeanTween.scale(gameObject, new Vector3(1.2f, 4.8f, 1.2f), 0.6f).setEaseInBack();
+            LeanTween.scale(continueButton, Vector3.zero, 0.6f);
             //LeanTween.scale(infoText, Vector3.zero, 0.8f);
-            LeanTween.moveLocal(poseImage, new Vector3(-5, 12, 1), 0.8f);
-            LeanTween.moveLocal(nameText, new Vector3(0, -21, 0), 0.8f);
+            LeanTween.moveLocal(poseImage, new Vector3(-5, 12, 1), 0.6f);
+            LeanTween.moveLocal(nameText, new Vector3(0, -21, 0), 0.6f);
 
             LeanTween.scale(closeButton, Vector3.zero, 0.8f);
 
             // Reverse the MorphImages effect
-            StartCoroutine(ReverseMorphRoutine(0.6f));
+            StartCoroutine(ReverseMorphRoutine(0.4f));
 
             // Reverse the LeanTween animations for scaling smaller image objects
             Bigger(imageObject01);
@@ -157,7 +157,7 @@ public class CharacterButtonController : MonoBehaviour
 
     private void Bigger(GameObject obj)
     {
-        LeanTween.scale(obj, new Vector3(1.2f, 4.8f, 1.2f), 0.8f);
+        LeanTween.scale(obj, new Vector3(1.2f, 4.8f, 1.2f), 0.6f);
     }
 
     private IEnumerator ReverseMorphRoutine(float duration)

@@ -127,7 +127,7 @@ public class CharacterToPose : MonoBehaviour
 
         StartCoroutine(MorphbackRoutine(0.6f));
 
-        yield return new WaitForSeconds(.8f);
+        yield return new WaitForSeconds(0.6f);
 
         StopCoroutine(MorphbackRoutine(0.6f));
 

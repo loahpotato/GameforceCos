@@ -27,8 +27,8 @@ public class StartToCharacter : MonoBehaviour
         //animator = GetComponent<Animator>();
         animator.enabled = false;
 
-        startButton.transform.LeanScale(new Vector3(0.0f, 0.0f, 0.0f), 0.8f).setEaseInBack();
-        settingsButton.transform.LeanScale(new Vector3(0.0f, 0.0f, 0.0f), 0.8f).setEaseInBack();
+        startButton.transform.LeanScale(new Vector3(0.0f, 0.0f, 0.0f), 0.6f).setEaseInBack();
+        settingsButton.transform.LeanScale(new Vector3(0.0f, 0.0f, 0.0f), 0.6f).setEaseInBack();
 
         yield return new WaitForSeconds(.8f);
 
@@ -45,11 +45,11 @@ public class StartToCharacter : MonoBehaviour
         characterText.transform.localScale = Vector3.zero;
         characterButtons.transform.localScale = Vector3.zero;
 
-        pickAText.transform.LeanScale(new Vector3(1.0f, 1.0f, 1.0f), 0.8f);
+        pickAText.transform.LeanScale(new Vector3(1.0f, 1.0f, 1.0f), 0.6f);
 
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.6f);
 
-        characterText.transform.LeanScale(new Vector3(1.0f, 1.0f, 1.0f), 0.8f).setEaseOutBack();
+        characterText.transform.LeanScale(new Vector3(1.0f, 1.0f, 1.0f), 0.6f).setEaseOutBack();
 
         yield return new WaitForSeconds(0.8f);
 
