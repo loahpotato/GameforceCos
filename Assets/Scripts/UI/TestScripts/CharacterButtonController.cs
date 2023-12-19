@@ -105,7 +105,7 @@ public class CharacterButtonController : MonoBehaviour
 
         // LeanTween animations for scaling and moving UI elements
         LeanTween.scale(gameObject, new Vector3(1.29f, 5.18f, 1.0f), 0.6f).setEaseOutBack();
-        LeanTween.scale(continueButton, new Vector3(1.2f, 0.5f, 1.0f), 0.6f);
+        LeanTween.scale(continueButton, new Vector3(1.25f, 0.48f, 1.2f), 0.6f);
         //LeanTween.scale(infoText, new Vector3(1.7f, 0.5f, 1.0f), 0.8f);
         LeanTween.moveLocal(poseImage, new Vector3(-5, 17, 0), 0.6f);
         LeanTween.moveLocal(nameText, new Vector3(0, -12, 0), 0.6f);

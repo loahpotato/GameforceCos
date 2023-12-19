@@ -51,7 +51,7 @@ public class CharacterToPose : MonoBehaviour
 
         StartCoroutine(MorphRoutine(0.6f));
 
-        LeanTween.moveLocal(characterButtons, new Vector3(0, -1000, 0), 0.8f).setEaseInBack();
+        LeanTween.moveLocal(characterButtons, new Vector3(0, -600, 0), 0.8f).setEaseInBack();
 
         yield return new WaitForSeconds(0.8f);
 
@@ -59,7 +59,7 @@ public class CharacterToPose : MonoBehaviour
         
         yield return new WaitForSeconds(.6f);
 
-        LeanTween.moveLocal(backButton, new Vector3(-800, 400, 0), 0.8f).setEaseInBack();
+        LeanTween.moveLocal(backButton, new Vector3(-800, 350, 0), 0.8f).setEaseInBack();
 
         //poseButton01.transform.localScale = Vector3.zero;
         //poseButton02.transform.localScale = Vector3.zero;
@@ -111,19 +111,19 @@ public class CharacterToPose : MonoBehaviour
 
         yield return new WaitForSeconds(.2f);
 
-        LeanTween.moveLocal(poseButton04, new Vector3(480, -1215, 0), 0.4f).setEaseInBack();
+        LeanTween.moveLocal(poseButton04, new Vector3(480, -939, 0), 0.4f).setEaseInBack();
 
         yield return new WaitForSeconds(.4f);
 
-        LeanTween.moveLocal(poseButton03, new Vector3(160, -1164, 0), 0.4f).setEaseInBack();
+        LeanTween.moveLocal(poseButton03, new Vector3(160, -986, 0), 0.4f).setEaseInBack();
 
         yield return new WaitForSeconds(.4f);
 
-        LeanTween.moveLocal(poseButton02, new Vector3(-160, -1239, 0), 0.4f).setEaseInBack();
+        LeanTween.moveLocal(poseButton02, new Vector3(-160, -911, 0), 0.4f).setEaseInBack();
 
         yield return new WaitForSeconds(.4f);
 
-        LeanTween.moveLocal(poseButton01, new Vector3(-480, -1192, 0), 0.4f).setEaseInBack();
+        LeanTween.moveLocal(poseButton01, new Vector3(-480, -961, 0), 0.4f).setEaseInBack();
 
         StartCoroutine(MorphbackRoutine(0.6f));
 
@@ -140,7 +140,7 @@ public class CharacterToPose : MonoBehaviour
 
         yield return new WaitForSeconds(.2f);
 
-        LeanTween.moveLocal(characterButtons, new Vector3(0, 195, 0), 0.8f).setEaseOutBack();
+        LeanTween.moveLocal(characterButtons, new Vector3(0, 185, 0), 0.8f).setEaseOutBack();
 
     }
 

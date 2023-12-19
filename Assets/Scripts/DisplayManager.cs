@@ -20,6 +20,7 @@ public class DisplayManager : NetworkBehaviour
     {
         if (flash != null && _Old != 0)
             flash.GetComponent<Flash>().CameraFlash();
+
         if (animationObject!= null)
             animationObject.SetActive(false);
 

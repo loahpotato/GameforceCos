@@ -28,6 +28,9 @@ public class PoseButtonController : MonoBehaviour
     public bool isOpened = false;
     private static PoseButtonController[] allButtons;
 
+    private float poseChangeCooldown = 3f; // Set your desired cooldown time in seconds
+    private float lastPoseChangeTime;
+
     private void Start()
     {
         allButtons = FindObjectsOfType<PoseButtonController>();
@@ -50,15 +53,25 @@ public class PoseButtonController : MonoBehaviour
 
     public void ToggleButtonPress()
     {
-        if (isOpened)
+        if (CanChangePose())
         {
-            ResetButtons();
-            PlayerManager.SetAnimation(1);
+            Debug.Log("Yay i work");
+
+            if (isOpened)
+            {
+                ResetButtons();
+                PlayerManager.SetAnimation(1);
+
+            }
+            else
+            {
+                ActivatePose();
+                PlayerManager.SetAnimation(animId);
+            }
         }
         else
         {
-            ActivatePose();
-            PlayerManager.SetAnimation(animId);
+            Debug.LogWarning("Pose change cooldown in progress.");
         }
 
     }
@@ -122,5 +135,16 @@ public class PoseButtonController : MonoBehaviour
         {
             button.isOpened = false;
         }
+    }
+
+    private bool CanChangePose()
+    {
+        float currentTime = Time.time;
+        if (currentTime - lastPoseChangeTime >= poseChangeCooldown)
+        {
+            lastPoseChangeTime = currentTime;
+            return true;
+        }
+        return false;
     }
 }

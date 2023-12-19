@@ -53,7 +53,7 @@ public class StartToCharacter : MonoBehaviour
 
         yield return new WaitForSeconds(0.8f);
 
-        characterButtons.transform.LeanScale(new Vector3(1.15f, 1.15f, 1.15f), 0.8f).setEaseOutBack();
+        characterButtons.transform.LeanScale(new Vector3(1.1f, 1.1f, 1.1f), 0.8f).setEaseOutBack();
 
     }
 }
