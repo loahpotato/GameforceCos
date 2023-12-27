@@ -20,16 +20,22 @@ public class PoseButtonController : MonoBehaviour
 
     [SerializeField] private float originalYPos;
 
-    [SerializeField] private int animId;
+    [SerializeField] private int poseId;
 
     private Vector3 initialPoseImageScale;
     private Vector3 initialExitButtonScale;
 
     public bool isOpened = false;
     private static PoseButtonController[] allButtons;
+    private PlayerManager currentPlayer;
 
     private float poseChangeCooldown = 3f; // Set your desired cooldown time in seconds
     private float lastPoseChangeTime;
+
+    private void Awake()
+    {
+        currentPlayer = PlayerManager.GetCurrentPlayer();
+    }
 
     private void Start()
     {
@@ -51,6 +57,8 @@ public class PoseButtonController : MonoBehaviour
         playerManager = player.GetComponent<PlayerManager>();
     }*/
 
+
+
     public void ToggleButtonPress()
     {
         if (CanChangePose())
@@ -60,13 +68,13 @@ public class PoseButtonController : MonoBehaviour
             if (isOpened)
             {
                 ResetButtons();
-                PlayerManager.SetAnimation(1);
+                PlayerManager.SetPoseAnimation(currentPlayer, 0);// init poseId
 
             }
             else
             {
                 ActivatePose();
-                PlayerManager.SetAnimation(animId);
+                PlayerManager.SetPoseAnimation(currentPlayer, poseId);
             }
         }
         else

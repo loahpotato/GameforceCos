@@ -22,9 +22,11 @@ public class CharacterToPose : MonoBehaviour
     [SerializeField] GameObject poseButton03;
     [SerializeField] GameObject poseButton04;
 
-    public void StartDefaultAnimation()
+    private PlayerManager currentPlayer;
+
+    private void Awake()
     {
-        PlayerManager.SetAnimation(1);
+        currentPlayer = PlayerManager.GetCurrentPlayer();
     }
 
     public void CharacterToPosePanel()
@@ -34,7 +36,7 @@ public class CharacterToPose : MonoBehaviour
 
     public void PoseToCharacterPanel()
     {
-        StartDefaultAnimation();
+        PlayerManager.SetPoseAnimation(currentPlayer, 0);// init poseId
         PoseButtonController.CloseAll();
         StartCoroutine(SwitchBackRoutine());
     }
@@ -44,7 +46,7 @@ public class CharacterToPose : MonoBehaviour
         // Call the Close method from CharacterPickerLean
         if (characterButtonController != null)
         {
-            characterButtonController.Close();
+            characterButtonController.ResetAll();
         }
 
         yield return new WaitForSeconds(.4f);

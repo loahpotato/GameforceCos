@@ -2,6 +2,7 @@ using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using UnityEngine;
 
@@ -10,13 +11,35 @@ public class DisplayManager : NetworkBehaviour
     public GameObject flash;
     //public TextMeshProUGUI animNumTextMeshPro;
     public GameObject displayCanvas;
-    public GameObject models;
+    public GameObject characters;
+    public GameObject poses;
     public GameObject animationObject;
     public Animator animator;
-    [SyncVar(hook = nameof(OnAnimChanged))]
-    public int animNum;
+    [SyncVar(hook = nameof(OnChracterChanged))]
+    public int characterNum;
+    [SyncVar(hook = nameof(OnPoseChanged))]
+    public int poseNum;
 
-    void OnAnimChanged(int _Old, int _New)
+    void OnChracterChanged(int _Old, int _New)
+    {
+
+        if (animationObject != null)
+            animationObject.SetActive(false);
+
+        animationObject = characters.transform.GetChild(_New - 1).gameObject;
+        animationObject.SetActive(true);
+        animator = animationObject.GetComponent<Animator>();
+        animator.SetBool("Back", false); //when first time start default, need enter animation
+        if (animator.HasState (0, Animator.StringToHash("root_rico_walk")))
+        {
+            animator.Play("root_rico_walk", 0, 0.7f);
+        }
+        //animator.SetTrigger("Active");
+
+    }
+
+
+    void OnPoseChanged(int _Old, int _New)
     {
         if (flash != null && _Old != 0)
             flash.GetComponent<Flash>().CameraFlash();
@@ -24,17 +47,23 @@ public class DisplayManager : NetworkBehaviour
         if (animationObject!= null)
             animationObject.SetActive(false);
 
-        Debug.Log(_New);
-        animationObject = models.transform.GetChild(_New-1).gameObject;
-        animationObject.SetActive(true);
-        animator = animationObject.GetComponent<Animator>();
-        if (_New == 1 && _Old != 0) //pose panel, when go back from one pose to default 
+        if (_New == 0) //when go back from one pose to default, no need enter animation
         {
-            animator.SetBool("Back", true);
-        }else if (_New == 1 && _Old == 0)
-        {
-            animator.SetBool("Back", false);
+            if (characterNum > 0)
+            {
+                animationObject = characters.transform.GetChild(characterNum - 1).gameObject;
+                animationObject.SetActive(true);
+                animator = animationObject.GetComponent<Animator>();
+                animator.SetBool("Back", true);
+            }
+
         }
+        else
+        {
+            animationObject = poses.transform.GetChild(_New - 1).gameObject;
+            animationObject.SetActive(true);
+        }
+        //Debug.Log(_New);
         //animator.SetTrigger("Active");
 
     }
@@ -43,7 +72,8 @@ public class DisplayManager : NetworkBehaviour
     void Awake()
     {
         var displayRoot = GameObject.Find("Display");
-        models = displayRoot.transform.Find("Models").gameObject;
+        characters = displayRoot.transform.Find("EnterModel").gameObject;
+        poses = displayRoot.transform.Find("PoseModel").gameObject;
         var canvas = displayRoot.transform.Find("CanvasHUD");
         flash = canvas.transform.Find("FlashImage").gameObject;
         //displayCanvas = GameObject.Find("Display").transform.GetChild(1).gameObject;
