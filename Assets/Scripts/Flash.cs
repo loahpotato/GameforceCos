@@ -34,7 +34,7 @@ public class Flash : MonoBehaviour
         }
         else
         {
-            Debug.Log("no ww");
+            Debug.Log("no wapow image");
         }
 
         Color col = flashImage.color;

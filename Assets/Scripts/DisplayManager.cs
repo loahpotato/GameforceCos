@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DisplayManager : NetworkBehaviour
@@ -19,6 +20,8 @@ public class DisplayManager : NetworkBehaviour
     public int characterNum;
     [SyncVar(hook = nameof(OnPoseChanged))]
     public int poseNum;
+
+    private float animSwitchTime = .3f;
 
     void OnChracterChanged(int _Old, int _New)
     {
@@ -41,13 +44,20 @@ public class DisplayManager : NetworkBehaviour
 
     void OnPoseChanged(int _Old, int _New)
     {
-        if (flash != null && _Old != 0)
+        if (flash != null)
+        {//&& _Old != 0)
             flash.GetComponent<Flash>().CameraFlash();
+            StartCoroutine(CoolDown.Wait(0.4f, switchPose));
+        }
+    }
 
-        if (animationObject!= null)
+
+    void switchPose()
+    {
+        if (animationObject != null)
             animationObject.SetActive(false);
 
-        if (_New == 0) //when go back from one pose to default, no need enter animation
+        if (poseNum == 0) //when go back from one pose to default, no need enter animation
         {
             if (characterNum > 0)
             {
@@ -60,12 +70,9 @@ public class DisplayManager : NetworkBehaviour
         }
         else
         {
-            animationObject = poses.transform.GetChild(_New - 1).gameObject;
+            animationObject = poses.transform.GetChild(poseNum - 1).gameObject;
             animationObject.SetActive(true);
         }
-        //Debug.Log(_New);
-        //animator.SetTrigger("Active");
-
     }
 
 
